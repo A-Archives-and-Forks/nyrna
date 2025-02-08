@@ -141,7 +141,7 @@ class ActiveWindow {
     return false;
   }
 
-  Future<void> _minimize(int windowId) async {
+  Future<void> _minimize(String windowId) async {
     final shouldMinimize = await _getShouldMinimize();
     if (!shouldMinimize) return;
 
@@ -150,7 +150,7 @@ class ActiveWindow {
     if (!minimized) log.e('Failed to minimize window.');
   }
 
-  Future<void> _restore(int windowId) async {
+  Future<void> _restore(String windowId) async {
     final shouldRestore = await _getShouldMinimize();
     if (!shouldRestore) return;
 

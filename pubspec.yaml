@@ -9,6 +9,7 @@ environment:
 dependencies:
   args: ^2.2.0
   collection: ^1.16.0
+  dbus: ^0.7.10
   ffi: ^2.0.1
   flutter:
     sdk: flutter
@@ -36,6 +37,10 @@ dependencies:
   http: ^1.1.0
   intl: any
   json_annotation: ^4.8.1
+  kwin:
+    git:
+      url: https://github.com/Merrit/kwin-dart.git
+      ref: 0d74e1f7e8ee14c129feafe9a16eb3d9da90dff9
   launch_at_startup: ^0.2.2
   logger: ^2.0.1
   package_info_plus: ^5.0.1
@@ -75,6 +80,7 @@ flutter:
   generate: true
   assets:
     - assets/icons/
+    - assets/lib/linux/
     - assets/lib/windows/
     - packaging/linux/codes.merritt.Nyrna.desktop
 

@@ -16,6 +16,7 @@ import 'apps_list/apps_list.dart';
 import 'argument_parser/argument_parser.dart';
 import 'autostart/autostart_service.dart';
 import 'hotkey/global/hotkey_service.dart';
+import 'loading/loading.dart';
 import 'logs/logs.dart';
 import 'native_platform/native_platform.dart';
 import 'settings/cubit/settings_cubit.dart';
@@ -33,7 +34,6 @@ Future<void> main(List<String> args) async {
     ..parseArgs(args);
 
   final storage = await StorageRepository.initialize(Hive);
-  final nativePlatform = NativePlatform();
 
   bool verbose = argParser.verbose;
   if (!verbose) {
@@ -52,6 +52,7 @@ Future<void> main(List<String> args) async {
   final packageInfo = await PackageInfo.fromPlatform();
   log.i('Starting Nyrna v${packageInfo.version}');
 
+  final nativePlatform = await NativePlatform.initialize();
   final processRepository = ProcessRepository.init();
 
   final appWindow = AppWindow(storage);
@@ -119,6 +120,8 @@ Future<void> main(List<String> args) async {
     appVersion: AppVersion(packageInfo),
   );
 
+  final loadingCubit = LoadingCubit(nativePlatform);
+
   runApp(
     MultiRepositoryProvider(
       providers: [
@@ -128,6 +131,7 @@ Future<void> main(List<String> args) async {
         providers: [
           BlocProvider.value(value: appCubit),
           BlocProvider.value(value: appsListCubit),
+          BlocProvider.value(value: loadingCubit),
           BlocProvider.value(value: settingsCubit),
           BlocProvider.value(value: themeCubit),
         ],

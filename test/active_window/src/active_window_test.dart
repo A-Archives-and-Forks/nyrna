@@ -28,7 +28,7 @@ const testProcess = Process(
 );
 
 const testWindow = Window(
-  id: 130023427,
+  id: '130023427',
   process: testProcess,
   title: 'Untitled-2 - Visual Studio Code - Insiders',
 );

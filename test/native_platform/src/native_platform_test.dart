@@ -1,12 +1,14 @@
 import 'dart:io' as io;
 
+import 'package:nyrna/logs/logging_manager.dart';
 import 'package:nyrna/native_platform/native_platform.dart';
 import 'package:test/test.dart';
 
 import 'skip_github.dart';
 
-void main() {
-  final platform = NativePlatform();
+Future<void> main() async {
+  await LoggingManager.initialize(verbose: false);
+  final platform = await NativePlatform.initialize();
 
   group('NativePlatform:', () {
     if (runningInCI) return;
