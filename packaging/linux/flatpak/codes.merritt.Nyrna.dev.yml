@@ -26,7 +26,6 @@ finish-args:
   # Tray icon support
   - --talk-name=org.kde.StatusNotifierWatcher
   - --talk-name=org.kde.KWin # Get window info from KWin for Wayland support
-  - --own-name=codes.merritt.Nyrna # Required for NyrnaDbus.initialize() D-Bus RequestName
 modules:
   - name: keybinder3
     buildsystem: autotools
